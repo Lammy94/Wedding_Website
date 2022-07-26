@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guestlist</title>
+    <script src="https://kit.fontawesome.com/61fa92be38.js" crossorigin="anonymous"></script>
+    <style>
+        #stats{display: table;border-collapse: separate;border-spacing: 2px; border-color: gray;border: solid;}
+        td{text-align: center}
+        .noResponse,.makeRed{background-color: lightcoral;}
+        .hasResponded {background-color: lightgreen;}
+    </style>
+</head>
+<body>
+<table id="stats" style="width:100%">
+    <tr>
+        <th>Attending Day</th>
+        <th>Attending Evening</th>
+        <th>Rejections</th>
+        <th>Total Responses</th>
+    </tr>
+    <tr>
+        <td>{{stats['Attending_Day']}}</td>
+        <td>{{stats['Attending_Evening']}}</td>
+        <td>{{stats['Rejected']}}</td>
+        <td>{{stats['Total_Responses']}}</td>
+    </tr>
+</table>
+
+<table id="data" style="width:100%">
+    <tr>
+        <th>Bundle</th>
+        <th>First</th>
+        <th>Last</th>
+        <th>Invited Day</th>
+        <th>Attending Day</th>
+        <th>Invited Evening</th>
+        <th>Attending Evening</th>
+        <th>Responded</th>
+        <th>Under 18</th>
+        <th>Special Requests</th>
+    </tr>
+    {% for each in data %}
+    <tr class="{% if each['responded']  == 1 %}hasResponded {% else %} noResponse{%endif%}">
+        <td>{{each['bundle_name']}}</td>
+        <td>{{each['person_first']}}</td>
+        <td>{{each['person_last']}}</td>
+        <td>{% if each['bundle_invited_day'] > 0 %} yes {% else %} no {%endif%}</td>
+        <td class="{% if each['attending_day'] != each['bundle_invited_day'] %}makeRed{%endif%}"> {% if each['attending_day'] > 0 %} yes {% else %} no {%endif%}</td>
+        <td>{% if each['bundle_invited_evening'] > 0 %} yes {% else %} no {%endif%}</td>
+        <td class="{% if each['attending_evening'] != each['bundle_invited_evening'] %}makeRed{%endif%}">{% if each['attending_evening'] > 0 %} yes {% else %} no {%endif%}</td>
+        <td>{% if each['responded']== 1 %}yes{%endif%}</td>
+        <td>{% if each['person_under18'] %}yes{%endif%}</td>
+        <td>{% if each['special_requirements'] %}{{each['special_requirements']}}{%endif%}</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

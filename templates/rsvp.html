@@ -1,0 +1,63 @@
+{% include 'parts/header.html' %}
+{% include 'parts/navigation.html' %}
+
+<div class="page" id="rsvp">
+    <hr>
+    <div class="images">
+        <img data-aos="fade-right" src="{{ url_for('static', filename='images/image_1.jpg') }}">
+        <img data-aos="fade-right" src="{{ url_for('static', filename='images/image_2.jpg') }}">
+        <img data-aos="zoom-in" src="{{ url_for('static', filename='images/image_3.jpg') }}">
+        <img data-aos="fade-left" src="{{ url_for('static', filename='images/image_4.jpg') }}">
+        <img data-aos="fade-left" src="{{ url_for('static', filename='images/image_5.jpg') }}">
+    </div>
+    <h3 id="kindly_respond">Kindly respond...</h3>
+
+    <form action="{{ url_for('rsvp.rsvp_page') }}" method="post">
+        <input type="hidden" name="bundle_id" value="{{bundle['bundle_id']}}">
+
+        <div class="individual_responses">
+            {% for each in people %}
+            <div class="radio_group">
+                <h1>{{each['person_first']}} {{each['person_last']}}</h1>
+
+                {% if bundle['bundle_invited_day'] %}
+                <div class="control">
+                    <input type="radio" value="day" name="response_{{each['person_id']}}" {%if each['attending_day']%}checked{%endif%}/>
+                    <label class="radio_label">Ceremony Only</label>
+                </div>
+                {% endif %}
+
+                {% if bundle['bundle_invited_evening'] %}
+                <div class="control">
+                    <input type="radio"  value="evening" name="response_{{each['person_id']}}" {%if each['attending_evening']%}checked{%endif%}/>
+                    <label class="radio_label">Evening Only</label>
+                </div>
+                {% endif %}
+
+                {% if bundle['bundle_invited_day'] and bundle['bundle_invited_evening'] %}
+                <div class="control">
+                    <input type="radio" value="both" name="response_{{each['person_id']}}" {%if each['attending_day'] and each['attending_evening'] %}checked{%endif%}/>
+                    <label class="radio_label">Ceremony & Evening</label>
+                </div>
+                {% endif %}
+
+                <div class="control">
+                    <input type="radio" value="neither" name="response_{{each['person_id']}}" />
+                    <label class="radio_label">Regrettably unable to attend</label>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="notesarea">
+            <!--<label for="notes">Extra information</label>-->
+            <textarea name="special_requirements" rows="2" placeholder="Please let us know of any dietary or special requirements you may have...">{% if bundle['special_requirements'] %}{{ bundle['special_requirements'] }}{% endif %}</textarea>
+        </div>
+
+        <div class="button_bank">
+            <button id="form_submit">submit</button>
+        </div>
+    </form>
+</div>
+
+{% include 'parts/footer.html' %}

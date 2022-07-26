@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        @font-face {
+            font-family: 'MyWebFont';
+            src: url("{{url_for('static', filename='Autumn_in_November.ttf')}}") format("truetype");
+        }
+        @page { size: a4 portrait;margin: 0; }
+        .placeholder{width: 10cm;display: inline-block; border: solid 1px #000}
+        .Top_fold, .Bottom_fold{height: 6cm;}
+        .top_leaf {transform: scaleY(1) scaleX(-1) rotate(20deg);width: 23%;margin-top: 1px; display: inline-block; vertical-align: middle;padding-top: 21%}
+        .name{display: inline-block;vertical-align: middle;}
+        .name h2{text-transform: capitalize;text-align: center;width: fit-content;white-space: nowrap;padding-top: 25%;}
+        .name{font-family:'MyWebFont',Fallback, sans-serif;}
+
+    </style>
+</head>
+<body>
+
+    {% for each in person %}
+    <div class="placeholder">
+        <div class="Top_fold">
+
+        </div>
+
+        <div class="Bottom_fold">
+            <img class="top_leaf" src="{{url_for('static', filename='images/eucalyptus_leaf.png')}}">
+            <div class="name">
+                <h2>{{each['person_first']}} {{each['person_last']}} </h2>
+            </div>
+        </div>
+
+    </div>
+    {%endfor%}
+</body>
+</html>

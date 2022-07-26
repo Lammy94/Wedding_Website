@@ -1,0 +1,704 @@
+/*
+font familys:
+- 'Dancing Script', cursive;
+- 'La Belle Aurore', cursive;
+- 'Pinyon Script', cursive;
+- 'Roboto Slab', serif;
+
+colors:
+
+*/
+
+
+:root {
+  --main-color: #383838;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+body{
+  margin: 0;
+  padding: 0;
+  background-color: rgb(224, 190, 192);
+}
+
+#enterCode, #landing {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+#enterCode::before, #landing::before {
+  content: "";
+  background-image: url('/static/images/main_lossy.jpg');
+  background-size: cover;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.5;
+}
+
+.page {
+  position: relative;
+  height: 100vh;
+  width: 80%;
+  width: 80%;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+.page::before{
+    content: "";
+    background-image: url(/static/images/eucalyptus_leaf.png);
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-size: contain;
+    opacity: 0.5;
+    background-repeat: no-repeat;
+    background-position-x: right;
+}
+.page *{
+  position: relative;
+  color: #000000;
+  text-align: center;
+}
+
+#navbar {
+  padding-top: 30px;
+  padding-bottom: 20px;
+  height:15vh;
+}
+#navbar ul {
+  list-style-type: none;
+  text-align: center;
+  padding-left: 0;
+}
+#navbar ul li {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  padding-left: 2.5%;
+  padding-right: 2.5%;
+}
+#navbar ul .navItem{
+  width: 10%;
+  vertical-align: top;
+}
+#navbar ul .navItem:hover{
+  margin-top: 1%;
+  text-decoration: underline;
+}
+#navbar ul li a {
+  text-align: center;
+  text-decoration: none;
+  color: #111;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.4em;
+  text-transform: capitalize;
+}
+#navbar ul li #navTitle {
+  font-size: 3em;
+  font-weight: bold;
+}
+
+#enterCode {}
+#enterCode .wrapper {
+    position: relative;
+    color: #000000;
+    margin-top: 0;
+    padding-top: 12%;
+    width: 30%;
+    margin: 0 auto;
+}
+#enterCode .wrapper .UserWelcome{
+  background-color: #d59696;
+  color: white;
+  border-radius: 10px;
+  padding: 5%;
+
+}
+#enterCode .UserWelcome h1{
+  margin-top: 0;
+  text-transform: capitalize;
+  text-align: center;
+  font-family: 'Dancing Script', cursive;
+}
+#enterCode .UserWelcome form{
+  text-align: center;
+}
+#enterCode .UserWelcome form input{
+overflow: hidden;
+    padding: 15px 32px;
+    color: #444;
+    margin-right: -3px;
+    text-align: center;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    border: none;
+}
+#enterCode .UserWelcome form input::placeholder{
+  color: #444;
+  font-weight: lighter;
+}
+#enterCode .UserWelcome form button{
+  border-top-left-radius: 0;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 5px;
+    background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+#landing {}
+#landing .UserWelcome, #landing .countdown, #landing #navbar, #landing .rsvp_button {
+  position: relative;
+  color: #000000;
+  text-align: center;
+}
+#landing .UserWelcome h1{
+  margin: 0;
+  padding: 0;
+  text-transform: capitalize;
+  padding-top: 12%;
+  font-family: 'Dancing Script', cursive;
+
+}
+#landing #navbar {
+  position: absolute;
+  bottom: 10%;
+  width: 100%;
+}
+#landing .countdown .container {
+  color: #333;
+  margin: 0 auto;
+  padding: 0.5rem;
+  text-align: center;
+}
+#landing .countdown .container ul {
+  padding-left: 0 ;
+}
+#landing .countdown h1 {
+  font-weight: normal;
+}
+#landing .countdown li {
+  display: inline-block;
+  list-style-type: none;
+  padding: 1em;
+  text-transform: uppercase;
+  font-family: 'Dancing Script', cursive;
+}
+#landing .countdown li span {
+  display: block;
+  font-size: 2rem;
+  color:#000000;
+  font-family: 'Roboto Slab', serif;
+}
+@media all and (max-width: 800px) {
+  #landing .countdown h1 {
+    font-size: 1.5rem;
+  }
+
+  #landing .countdown li {
+    font-size: 1.125rem;
+  }
+
+  #landing .countdown li span {
+    font-size: 3.375rem;
+  }
+}
+#landing hr {
+  border: 0;
+  height: 1px;
+  background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+}
+#landing .UserWelcome {
+  text-align: center;
+}
+#landing .carousel .container {
+  width: 60%;
+}
+#landing .carousel #carouselText {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  vertical-align: middle;
+  bottom: 20%;
+  z-index: 100;
+  font-size: 3em;
+  color: #e6e6e6;
+  font-family: 'Pinyon Script', cursive;
+
+}
+#landing .rsvp_button .btn {
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  background: none;
+  cursor: pointer;
+  padding: 10px 40px;
+  display: inline-block;
+  margin: 15px 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  outline: none;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  background: #cb4e4e;
+  color: #fff;
+  box-shadow: 0 6px #ab3c3c;
+}
+#landing #LogOutMessage {
+  position: absolute;
+    right: 10px;
+    bottom: 5px;
+}
+#landing #LogOutMessage a {
+  color: red;
+}
+
+
+#rsvp{}
+#rsvp .images {
+  text-align: center;
+  margin-top: 1%;
+}
+#rsvp .images img {
+  #height: 150px;
+  width: 180px;
+  filter: brightness(0.9);
+}
+#rsvp hr {
+  border: 0;
+  height: 1px;
+  background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+}
+#rsvp #kindly_respond{
+  text-align: center;
+  font-family: 'Dancing Script', cursive;
+}
+#rsvp table {
+  width: 100%;
+  margin: 0 auto;
+}
+#rsvp table th {
+  text-align: center;
+}
+#rsvp table tr{}
+#rsvp tr:nth-child(even) {
+    background-color: #edd3d3;
+    color: #444;
+}
+#rsvp tr:nth-child(odd) {
+  background-color: #e7f0e4;
+  color: #444;
+}
+#rsvp tr:first-child {
+  background-color: #f0f0f0;
+  color: #444;
+}
+#rsvp  table .pName{
+  text-align: right;
+  padding-right: 25px;
+}
+#rsvp  table .option{
+  text-align: center;
+}
+#rsvp_thanks {
+  text-align: center;
+}
+#rsvp_thanks h2{
+  text-align: center;
+}
+#rsvp .notesarea {
+  display: grid;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 2.5%;
+}
+#rsvp .notesarea textarea {
+    padding: 2%;
+    text-transform: capitalize;
+    resize: none;
+    background-color: #eee;
+    color: #444;
+    border: none;
+    border-radius: 5px;
+}
+#rsvp .notesarea textarea::placeholder{
+  color: #444;
+  font-weight: lighter;
+}
+#rsvp .button_bank{
+  text-align: center;
+  margin-top: 1%;
+}
+#rsvp button{
+    border-radius: 50px;
+    border: 3px solid #fff;
+    color: #fff;
+    overflow: hidden;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background: none;
+    cursor: pointer;
+    padding: 25px 80px;
+    display: inline-block;
+    margin: 15px 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    outline: none;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+#rsvp #form_submit{
+  background: #d59696 /*#15d798*/;
+  color: #444;
+}
+#rsvp #form_submit:hover{
+    background: #cb7e7e /*#24b662*/;
+}
+#rsvp #form_reset{
+  background:    #b8d1ae;
+  color: #444;
+}
+#rsvp #form_reset:hover{
+  background:    #9cbf8e;
+}
+/* card details */
+#rsvp .individual_responses{
+  text-align: center;
+}
+#rsvp .radio_group {
+  display: inline-block;
+  vertical-align: top;
+  background: #eee;
+  color: #444;
+  text-align: left;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+  padding: 30px;
+  width: 250px;
+  margin: 10px;
+}
+#rsvp .radio_group h1 {
+  font-size: 15px;
+  font-family: 'Roboto Slab', serif;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+#rsvp .radio_group .control {
+    padding-top: 2.5px;
+    padding-bottom: 2.5px;
+}
+#rsvp .radio_group .radio_label{
+  font-size: 0.8em;
+  vertical-align: middle;
+  font-family: 'Roboto Slab', serif;
+}
+#rsvp .radio_group input[type=radio]{
+  margin-right: 5px;
+}
+
+
+#information nav {
+  padding-top: 30px;
+  padding-bottom: 20px;
+  height:15vh;
+}
+#information nav ul {
+  list-style-type: none;
+  text-align: center;
+  padding-left: 0;
+}
+#information nav ul li {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  padding-left: 2.5%;
+  padding-right: 2.5%;
+}
+#information nav ul .navItem{
+  width: 10%;
+}
+#information nav ul li a {
+  text-align: center;
+  text-decoration: none;
+  color: #111;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.4em;
+  text-transform: capitalize;
+}
+#information h2{
+  text-align: center;
+  text-transform: capitalize;
+}
+
+#information .infoCard{
+  display: inline-block;
+  vertical-align: top;
+  background: #eee;
+  color: #444;
+  text-align: left;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+  padding: 20px;
+  margin: 10px;
+  width: 100%;
+}
+#information .infoCard h2 {
+  font-family: 'Roboto Slab', serif;
+
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-color: #444;
+  color: #444;
+  text-decoration-thickness: 1px;
+}
+#information .infoCard p{
+  font-family: 'Roboto Slab', serif;
+}
+
+#information #times .clocks{
+  display: inline-block;
+  text-align: center;
+  width: 33%;
+}
+#information #times .clocks svg{
+  width: 50%;
+  height: 50%;
+}
+#information #location .location_data {
+  width: 49.5%;
+  display: inline-block;
+  /* border: solid; */
+  vertical-align: text-top;
+}
+#information #location #written_address{
+  text-align: right;
+}
+#information #location #map{}
+#information #location #map iframe{
+  width: 100%;
+  height: 40vh;
+  border: none;
+}
+
+#information #order #process {
+  margin-bottom: 40px;
+  overflow-x: hidden;
+}
+#information #order .process-wrap {
+  margin: 100px auto;
+}
+#information #order .process-main {
+  width: 100%;
+  min-width: 320px;
+  display: flex;
+}
+#information #order .col-3 {
+  width: 25%;
+  position: relative;
+}
+#information #order .col-3:first-child .process-step:before {
+  content: '1pm';
+}
+#information #order .col-3:nth-child(2) .process-step:before{
+  content: '1:30';
+}
+#information #order .col-3:nth-child(3) .process-step:before {
+  content: '2pm';
+}
+#information #order .col-3:nth-child(4) .process-step:before {
+  content: '4pm';
+}
+#information #order .col-3:nth-child(5) .process-step:before {
+  content: '5pm';
+}
+#information #order .col-3:nth-child(6) .process-step:before {
+  content: '7pm';
+}
+#information #order .process-main .col-3:not(:first-child):before{
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  top: 17.5px;
+  left: calc(-50% + 20px);
+  right: 0;
+  background: var(--main-color);
+  border: 2px var(--main-color) solid;
+  -o-transition: .4s;
+  -ms-transition: .4s;
+  -moz-transition: .4s;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+#information #order .process-step-cont {
+  font-family: sans-serif;
+  font-size: 16px;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  align-content: space-between;
+}
+#information #order .process-step {
+  border: 5px var(--main-color) solid;
+  border-radius: 100%;
+  line-height: 0;
+  background: var(--main-color);
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  display: flex;
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  font-weight: 700;
+  margin-bottom: 7px;
+  z-index: 4;
+  cursor: pointer;
+}
+#information #order .process-label {
+  color: var(--main-color);
+  font-weight: 600;
+  width: 100%;
+  text-align: center;
+  transform: rotate(20deg);
+  margin-top: 15px;
+}
+
+#story .storyTitle {
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    margin-bottom: 0;
+}
+#story .item {
+  /*margin: 50px auto;*/
+  margin-top: 2.5%;
+  text-align: center;
+}
+#story .item .storyImage, #story .item .storyText{
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 2.5%;
+  padding-right: 2.5%;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+#story .item .storyImage{
+  width: 25%;
+}
+#story .item .storyText{
+  width: 74%;
+}
+#story .item .storyText:nth-child(odd){
+  text-align: right;
+}
+#story .item .storyText:nth-child(even){
+  text-align: left;
+}
+#story .item .storyFinal{
+  padding-top: 2.5%;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 5%;
+}
+#story .item .storyText, #story .item .storyFinal{
+  /*font-family: 'La Belle Aurore', cursive;*/
+  font-family: 'Roboto Slab', serif;
+  font-size: 1.2em;
+
+}
+
+#music {}
+#music #submit_song{
+  cursor: pointer;
+}
+#music #submit_song p{
+  text-transform: capitalize;
+  text-align: center;
+  padding-top: 5%;
+}
+#music #submit_song .fa-plus-circle{
+    margin-top: 20%;
+    margin-bottom: 5%;
+    font-size: 3em;
+    text-align: center;
+    width: 100%;
+}
+#music #make_submission {
+  display: none
+}
+#music #make_submission h2{
+  font-size:1em;
+  margin-top:0;
+}
+#music #make_submission input{
+  width:100%;
+  margin-top:2.5%;
+  margin-bottom:2.5%;
+}
+#music #make_submission input[button]{
+  text-align:right;
+}
+
+#music .card {
+  display: inline-block;
+  vertical-align: top;
+  background: #eee;
+  color: #444;
+  text-align: left;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+  padding: 30px;
+  width: 18%;
+  /*height: 400px;*/
+  margin: 10px;
+}
+#music .card img{
+  text-align: center;
+  /* margin: 0 auto; */
+  width: 100%;
+  font-size: 4em;
+}
+#music .card .songTitle {
+  text-align: center;
+  font-size: 1.3em;
+}
+#music .card .artistName{
+  text-align: center;
+}
+#music .card .requester{
+  display: none;
+}
+

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paper-css/0.3.0/paper.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Forum&family=Staatliches&family=Unica+One&display=swap" rel="stylesheet">
+    <meta name="pdfkit-orientation" content="portrait"/>
+    <meta name="pdfkit-page-size" content="A5"/>
+
+    <style>
+        @font-face {
+            font-family: 'MyWebFont';
+            src: url("{{url_for('static', filename='Autumn_in_November.ttf', _external=True)}}") format("truetype");
+        }
+        @page { size: a5 portrait;margin: 0; }
+        body {text-align: center; font-family: 'Forum', cursive;}
+        #top_leaf {transform: scaleY(-1) rotate(40deg);width: 23%;position: absolute;right: 10%;top:10px;margin-top: 1px}
+        #bottom_leaf {transform: scaleX(-1) rotate(40deg);width: 23%;position: absolute;left: 10%; bottom: -150px}
+        .header{margin-top:35%}
+        #withfam{text-transform: uppercase}
+        #names{font-size: 3em;margin-top: -1%;font-family:'MyWebFont',Fallback, sans-serif;margin-bottom: 0;}
+        #location{}
+        #only_day{margin-top: 3%;}
+        .instruction {width: 50%;text-align: center;margin: 0 auto;}
+        .link{font-size: 0.8em}
+        #datetime p {display: inline-block}
+        .toBorder{border-top: 2px solid;border-bottom: 2px solid;padding-top: 5px; padding-bottom: 5px; width:100px}
+        .date{width: 80px;text-align: center;vertical-align: middle;}
+        #who {position: absolute;right: 5px;top: 0vh;font-size: 0.5em;}
+    </style>
+</head>
+<body>
+    <img id="top_leaf" src="{{url_for('static', filename='images/eucalyptus_leaf.png', _external=True)}}">
+
+    <div class="header">
+        <p id="withfam">Together with their families</p>
+        <h2 id="names"><span>Ryan</span> & <span>India</span></h2>
+    </div>
+    <div class="details">
+        {% if attend_day %}
+        <p class="invite">Would love you to join them as they say 'I do'</p>
+        {% else %}
+        <p class="invite">Would like to invite you to celebrate their marriage at an Evening Reception</p>
+        {% endif %}
+        <div id="datetime">
+            <p class="toBorder">{{dates['day']}}</p>
+            <p class="date">{{dates['date']}}</p>
+            {% if attend_day %}
+            <p class="toBorder">At {{times['ceremony']}}</p>
+            {% else %}
+            <p class="toBorder">At {{times['evening']}}</p>
+            {% endif %}
+        </div>
+        <div id="location">
+            <p>{{location['1']}}, {{location['2']}}, {{location['3']}}, {{location['4']}}</p>
+        </div>
+        {% if attend_day %}
+        <div id="only_day">
+            <p>Afternoon Tea and Reception to follow</p>
+        </div>
+        {% endif %}
+    </div>
+    <div class="rsvp">
+        <h3>RSVP:</h3>
+        <p class="instruction">Please kindly respond by {{dates['rsvp']}} using the QR code or link below</p>
+        <img src="data:image/png;base64,{{qr}}">
+        <p class="link">{{link}}</p>
+    </div>
+
+    <img id="bottom_leaf" src="{{url_for('static', filename='images/eucalyptus_leaf.png', _external=True)}}">
+
+    <p id="who">{{bundle_name}}</p>
+</body>
+</html>

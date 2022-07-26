@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Music Requests</title>
+    <script src="https://kit.fontawesome.com/61fa92be38.js" crossorigin="anonymous"></script>
+    <style>
+        body{padding: 3%}
+        h2{text-transform: capitalize;}
+        .warning{font-size: 0.5em}
+        table{
+            display: table;
+            border-collapse: collapse;
+            border-spacing: 2px;
+            border: solid gray;
+            text-transform: capitalize;
+        }
+        table tr{
+            border-top: solid gray;
+        }
+        table img {width: 50px;}
+        .extra{
+            {% if not requesters %}display: none;{% endif %}
+        }
+    </style>
+</head>
+<body>
+
+<h2>First dance song</h2>
+<iframe src="https://open.spotify.com/embed/track/6IBcOGPsniK3Pso1wHIhew?theme=0" width="100%" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+
+<h2>Songs requested by wedding party</h2>
+<p class="warning">*Artwork has been auto-collected and may not be correct</p>
+<table id="data" style="width:100%">
+    <tr>
+        <th></th>
+        <th>Song</th>
+        <th>Artist</th>
+        <th class="extra">Requester</th>
+    </tr>
+    {% for each in data %}
+    <tr>
+        <td><img src="{{each['artwork']}}"/></td>
+        <td>{{each['title']}}</td>
+        <td>{{each['artist']}}</td>
+        <td class="extra">{{each['bundle_name']}}</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

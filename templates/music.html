@@ -1,0 +1,30 @@
+{% include 'parts/header.html' %}
+{% include 'parts/navigation.html' %}
+
+<div class="page" id="music">
+    <hr>
+
+    <div id="submit_song" class="card">
+        <i class="fas fa-plus-circle"></i>
+        <p>add a song</p>
+    </div>
+
+    <script>showForm()</script>
+
+    <div id="make_submission" class="card">
+        <h2>Add a song</h2>
+        <form action="{{ url_for('music.music_request') }}" method="post">
+            <input type="text" id="title" name="title" placeholder="song title">
+            <input type="text" id="artist" name="artist" placeholder="artist">
+            <input type="hidden" id="bundle" name="bundle" value="{{bundle['bundle_id']}}">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+
+
+</div>
+<script>
+    get_music("{{url_for('music.music_api')}}");
+</script>
+{% include 'parts/footer.html' %}

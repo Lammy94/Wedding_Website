@@ -1,0 +1,8 @@
+PyPDF2
+pdfkit
+jinja2
+pymysql
+pyqrcode
+imgkit
+flask
+PyPNG

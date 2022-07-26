@@ -1,0 +1,13 @@
+{% include 'parts/header.html' %}
+<div id="enterCode" class="page">
+    <div class="wrapper">
+        <div class="UserWelcome">
+            <h1>please enter the code given on your invitation</h1>
+            <form method="post"  action="{{ url_for('login') }}">
+                <input type="number" name="code" placeholder="000000" min="100000" max="999999"/>
+                <button><i class="fas fa-sign-in-alt"></i></button>
+            </form>
+        </div>
+    </div>
+</div>
+{% include 'parts/footer.html' %}

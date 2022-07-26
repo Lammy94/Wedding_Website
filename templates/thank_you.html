@@ -1,0 +1,12 @@
+{% include 'parts/header.html' %}
+<div class="page" id="rsvp_thanks">
+    <h2>{{response}}</h2>
+
+    <script>
+         setTimeout(function(){
+            window.location.href = "{{ url_for('homepage') }}";
+         }, 3000);
+    </script>
+
+</div>
+{% include 'parts/footer.html' %}
