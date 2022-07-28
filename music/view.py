@@ -8,11 +8,17 @@ import urllib
 music = Blueprint('music', __name__)
 
 class getArtwork(threading.Thread):
+    """
+    Class to call to MusicBrainz and get the link to album artwork
+    runs as its own thread so as not to hold up the ux
+    """
     def __init__(self, songName, artist, songID):
         threading.Thread.__init__(self)
         self.songName = songName
         self.artist = artist
         self.songID = songID
+        
+        # these are placeholders, get overwriten when discovered
         self.release_id = 000
         self.artwork_url = "https://via.placeholder.com/150x150.png?text=No+Album+Cover"
 
@@ -60,6 +66,7 @@ def add_song(form_data):
         else:
             logging.debug(f"[*] Duplicate Found!", flush=True)
     return True
+    
 def get_all_requested_music():
     with db_connect().cursor() as cursor:
         try:

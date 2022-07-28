@@ -13,17 +13,36 @@ api = Blueprint('api', __name__)
 
 
 class MakeQRCode:
+    """
+    Class to make QR code based on the id given for a bundle
+
+    """
+
     def __init__(self, base_url, id):
+        """
+        initialise the class, must pass in base_url and id
+        """
+        # form a connection to the database
         self.database = self.db_connect()
+
+        # add the base url + id to the class
         self.base_url = base_url
         self.bundle_id = id
+
+        # Get information about the bundle
         self.bundle_data = self.get_data()
+
+        # Make a unique url for the bundle
         self.url = self.make_url()
+
+        # encode that url in a QR code
         self.code = self.make_code()
 
     def get_data(self):
+        # with connection to the database
         with self.database.cursor() as cursor:
             try:
+                # Get row of information about the bundle
                 cursor.execute(f"SELECT * FROM Bundle WHERE bundle_id = '{self.bundle_id}';")
                 data = cursor.fetchone()
             except Exception as err:
@@ -31,9 +50,11 @@ class MakeQRCode:
         return data if data else False
 
     def make_url(self):
+        # url format will be example.com?bundle=111
         return f"{self.base_url}?bundle={self.bundle_data['bundle_unique_id']}"
 
     def make_code(self):
+        # use the pyqrcode library to make the QR crode
         return pyqrcode.create(self.url)
 
     @staticmethod
@@ -50,17 +71,34 @@ class MakeQRCode:
 
 
 class MakeInvite(threading.Thread):
+    """
+    Class to make the invites. 
+    large number of these have to be made at once so makes sense to do it 
+    asynchronous
+    """
     def __init__(self, base_url, id, as_image=False, save_html=False):
+        # initialise as a thread
         threading.Thread.__init__(self)
 
+        # form connection to the database
         self.database = self.db_connect()
+        
+        # get the config table ()
         self.config = self.get_config()
+
+        # get the bundle details
         self.bundle_details = self.get_bundle_details(id)
+        
+        # use the class to make a qr code
         self.QR = MakeQRCode(base_url, id)
 
+        # location is hardcoded here (could have been put in config table)
         location = {"1": "The Speech House", "2": "Speech House Rd", "3": "Coleford", "4": "GL16 7EL"}
 
+        # format the datetime to a string
         dt = datetime.strptime(self.config['Wedding_date'], '%Y-%m-%d')
+        
+        # split it for easier use throughout the invite
         dates = {"day": dt.strftime('%A'),
                  "date": dt.strftime("%B %d %Y"),
                  "rsvp": datetime.strptime(self.config['RSVP_Date'], '%Y-%m-%d').strftime("%d %B")}
@@ -85,6 +123,7 @@ class MakeInvite(threading.Thread):
         # Output the html as an image
         self.file = self.html_to_img() if as_image else self.html_to_pdf()
 
+        # will save the invite as a html page
         if save_html:
             self.write_to_file()
 
@@ -93,10 +132,17 @@ class MakeInvite(threading.Thread):
         self.outcome = "success"
 
     def write_to_file(self):
+        """
+        basic function to write html version of the invite to file
+        """
         with open(f"invites/{self.bundle_details['bundle_name']}.html", "w") as file:
             file.write(self.template)
 
     def get_people(self):
+        """
+        Get all people who are in the bundle. 
+        return only their first name
+        """
         with self.database.cursor() as cursor:
             try:
                 cursor.execute(
@@ -110,11 +156,19 @@ class MakeInvite(threading.Thread):
         return ', '.join(people)
 
     def html_to_img(self):
+        """
+        convert the HTMl file to png using imgkit module
+        makes it easier to print individuals. other option to make a pdf
+        """
         file_name = f"invites/{self.bundle_details['bundle_name']}.png"
         imgkit.from_string(self.template, file_name)
         return file_name
 
     def html_to_pdf(self):
+        """
+        convert the html to a pdf using pdfkit
+        makes it easier to print multiple later 
+        """
         file_name = f"invites/{self.bundle_details['bundle_name']}.pdf"
         pdfkit.from_string(self.template, file_name, options={
             'page-size': 'A5',

@@ -7,6 +7,15 @@ rsvp = Blueprint('rsvp', __name__)
 
 @rsvp.route('/rsvp', methods=['GET', 'POST'])
 def rsvp_page():
+    # make sure the user hasnt tried to navigate to the page without a
+    # bundle id set
+    if not request.cookies.get('bundle'):
+        return render_template('error.html', Error_Message="No user data found")
+    else:
+        bundle = get_bundle_details(request.cookies.get('bundle'))
+
+
+    # if the request was a submittion of the form
     if request.method == "POST":
         # Get the form data
         form_responses = request.form.to_dict()
@@ -28,13 +37,17 @@ def rsvp_page():
         update_table(f"UPDATE Bundle SET responded=1, special_requirements='{s_requirements}' WHERE bundle_id = '{bundle_id}';")
         return rsvp_thanks()
 
-    if not request.cookies.get('bundle'):
-        return render_template('error.html', Error_Message="No user data found")
-    else:
-        bundle = get_bundle_details(request.cookies.get('bundle'))
-
-    return render_template('rsvp.html', config=dumps(get_config()), people=get_people(bundle), bundle=bundle)
+    # retun the content to the user 
+    return render_template(
+        'rsvp.html',
+        config=dumps(get_config()),
+        people=get_people(bundle),
+        bundle=bundle
+        )
 
 @rsvp.route('/rsvp_thank_you')
 def rsvp_thanks():
+    """
+    function to return the thank you page on form submittion (static content page)
+    """
     return render_template('thank_you.html', response="Thank you for your response!")
